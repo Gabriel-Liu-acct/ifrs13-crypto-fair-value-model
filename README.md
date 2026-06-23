@@ -1,6 +1,6 @@
 # IFRS 13 Smart Contract-Bound Valuation Framework
 
-## 📌 Project Overview
+## Project Overview
 This repository provides a **Level 3 valuation technical guide** under **IFRS 13 (Fair Value Measurement)** for digital assets subject to rigid smart contract restrictions. 
 
 In traditional financial accounting, public holdings of crypto assets are often measured using Level 1 spot prices (IAS 38 / IFRS 13). However, when assets are locked in smart contracts (e.g., DeFi staking, programmatic vesting, or governance lock-ups), they exhibit severe contractual illiquidity. Directly adopting exchange spot prices overlooks asset-specific restrictions and introduces valuation bubbles.
@@ -9,11 +9,11 @@ This framework bridges the gap by translating blockchain code constraints into c
 
 ---
 
-## 📑 Theoretical Framework
+## Theoretical Framework
 
 The framework formalizes smart contract constraints within a filtered probability space ($\Omega$, $\mathcal{F}$, $\lbrace \mathcal{F}\_t \rbrace_{t \ge 0}$, $\mathbb{Q}$), where $\mathbb{Q}$ represents the risk-neutral pricing measure.
 
-### 1. Asset Price Dynamics (Jump-Diffusion)
+### 1. Asset Price Dynamics
 To capture the extreme volatility and "flash crash" risks inherent in decentralized protocols, the underlying asset price $S_t$ is modeled via a **Merton Jump-Diffusion Process** adjusted for the continuous staking yield $q$:
 
 $$dS_t = (r - q - \lambda \kappa) S_t dt + \sigma S_t dW_t + S_{t-} dN_t$$
@@ -32,7 +32,7 @@ The economic loss of liquidity is framed as a lookback option boundary problem, 
 
 ---
 
-## 💻 Numerical Implementation
+## Numerical Implementation
 
 Since the incorporation of jump-diffusion and non-linear liquidation penalty functions yields no closed-form analytical solution, this framework utilizes **Numerical Analysis** to approximate the fair value.
 
@@ -46,7 +46,7 @@ Since the incorporation of jump-diffusion and non-linear liquidation penalty fun
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```text
 ├── data/                   # Calibrated market parameters (BTC, ETH, stETH)
