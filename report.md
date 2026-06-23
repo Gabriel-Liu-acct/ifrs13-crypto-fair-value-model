@@ -21,10 +21,10 @@ Traditional quantitative models employed by the "Big 4" audit firms to calculate
 ---
 
 ## 2. Theoretical Framework & Probability Space
-To establish immutable mathematical boundaries for smart contract constraints, we formalize the asset dynamics within a filtered probability space $(\Omega, \mathcal{F}, \lbrace \mathcal{F}_t \rbrace_{t \ge 0}, \mathbb{Q})$, where:
+To establish immutable mathematical boundaries for smart contract constraints, we formalize the asset dynamics within a filtered probability space ($\Omega$, $\mathcal{F}$, $\lbrace \mathcal{F}\_t \rbrace_{t \ge 0}$, $\mathbb{Q}$), where:
 * $\Omega$ represents the sample space containing all possible continuous price paths of the asset.
 * $\mathcal{F}$ is the global $\sigma$-algebra representing the collection of all verifiable events up to the terminal horizon.
-* $\lbrace \mathcal{F}_t \rbrace_{t \ge 0}$ defines the filtration, modeling the dynamic flow of market information and data availability over time.
+* $\lbrace \mathcal{F}\_t \rbrace_{t \ge 0}$ defines the filtration, modeling the dynamic flow of market information and data availability over time.
 * $\mathbb{Q}$ denotes the risk-neutral probability measure required for fair value expectations under IFRS 13.
 
 The restriction imposed by a smart contract is mathematically framed as a constraint on the holder's filtration space. While the unconstrained market operates on $\mathcal{F}_t^{\text{open}}$, the locked holder's effective action space is projected onto a restricted information set $\mathcal{F}_t^{\text{restricted}} \subset \mathcal{F}_t^{\text{open}}$, rendering the asset non-transferable until a deterministic maturity $T$ or a stochastic stopping time $\tau$.
