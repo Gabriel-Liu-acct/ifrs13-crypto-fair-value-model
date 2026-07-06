@@ -7,7 +7,7 @@
 ---
 
 ## Abstract
-This paper addresses a critical valuation bubble in current accounting practices under IFRS 13 (Fair Value Measurement) regarding digital assets locked within rigid smart contract constraints. By bridging measure-theoretic probability with numerical analysis, we propose a Level 3 valuation technical guide. We formalize the economic loss of contractual illiquid assets using a modified jump-diffusion option-pricing framework, providing practitioners and auditors with a mathematically rigorous, reproducible framework for deriving the Discount for Lack of Marketability (DLOM).
+This paper addresses a critical valuation bubble in current accounting practices under IFRS 13 (Fair Value Measurement) regarding digital assets locked within rigid smart contract constraints. By bridging numerical methods in finance, we propose a Level 3 valuation technical guide. We formalize the economic loss of contractual illiquid assets using a modified jump-diffusion option-pricing framework, providing practitioners and auditors with a mathematically rigorous, reproducible framework for deriving the Discount for Lack of Marketability (DLOM).
 
 ---
 
@@ -64,11 +64,11 @@ The complete, modular Python code implementation for this numerical grid matrix 
 
 ---
 
-## 📚 References
-[1] IFRS Foundation, *IFRS 13 Fair Value Measurement*, International Accounting Standards Board (IASB), 2020.
+## References
+[?] IFRS Foundation, "IFRS 13 Fair Value Measurement." Accessed: Aug. 13, 2026. [Online]. Available: https://www.ifrs.org/issued-standards/list-of-standards/ifrs-13-fair-value-measurement.html/content/dam/ifrs/publications/html-standards/english/2026/issued/ifrs13/
 
-[2] F. A. Longstaff, "How much can marketability afford to lose? An economic valuation of illiquid assets," *The Journal of Finance*, vol. 50, no. 5, pp. 1767-1774, 1995.
+[?] F. A. Longstaff, "How Much Can Marketability Affect Security Values?," *J. Finance*, vol. 50, no. 5, pp. 1767-1774,Dec. 1995.
 
-[3] D. B. Chaffe, "Options pricing as a proxy for discounts for lack of marketability," *Business Valuation Review*, vol. 12, no. 4, pp. 182-188, 1993.
+[?] R. Moro-Visconti, "Valuing Cryptocurrencies and Digital Assets: Can Value Exist Without Cash Flows?" in *Augmented Corporate Valuation: From Digital Networking to ESG Compliance*, 
 
-[4] J. E. Finnerty, "An average-strike option-pricing model for valuing restricted stock," *The Journal of Derivatives*, vol. 19, no. 4, pp. 43-58, 2012.
+[?] J. E. Finnerty, "An average-strike option-pricing model for valuing restricted stock," *The Journal of Derivatives*, vol. 19, no. 4, pp. 43-58, 2012.
