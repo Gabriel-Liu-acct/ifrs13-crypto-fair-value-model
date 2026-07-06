@@ -67,8 +67,10 @@ The complete, modular Python code implementation for this numerical grid matrix 
 ## References
 [?] IFRS Foundation, "IFRS 13 Fair Value Measurement." Accessed: Aug. 13, 2026. [Online]. Available: https://www.ifrs.org/issued-standards/list-of-standards/ifrs-13-fair-value-measurement.html/content/dam/ifrs/publications/html-standards/english/2026/issued/ifrs13/
 
-[?] F. A. Longstaff, "How Much Can Marketability Affect Security Values?," *J. Finance*, vol. 50, no. 5, pp. 1767-1774,Dec. 1995.
+[?] F. A. Longstaff, “How Much Can Marketability Affect Security Values?,” *J. Finance, vol. 50, no. 5, pp. 1767–1774, Dec. 1995, doi: 10.1111/j.1540-6261.1995.tb05197.x.
 
-[?] R. Moro-Visconti, "Valuing Cryptocurrencies and Digital Assets: Can Value Exist Without Cash Flows?" in *Augmented Corporate Valuation: From Digital Networking to ESG Compliance*, 
+[?] R. Moro-Visconti, “Valuing Cryptocurrencies and Digital Assets: Can Value Exist Without Cash Flows?,” *Augmented Corporate Valuation: From Digital Networking to ESG Complience*. Springer Nature Switzerland, pp. 497–529, 2026. doi: 10.1007/978-3-032-17903-6_11. 
 
-[?] J. E. Finnerty, "An average-strike option-pricing model for valuing restricted stock," *The Journal of Derivatives*, vol. 19, no. 4, pp. 43-58, 2012.
+[?]  E. Beigman et al, “Fair Value Measurement in Inactive Crypto Asset Markets,” *J. Account. Audit. Finance*, vol. 40, no. 1, pp. 241–269, Apr. 2023, doi: 10.1177/0148558x231165557.
+
+[?] L. Clewlow and C. Strickland, 
