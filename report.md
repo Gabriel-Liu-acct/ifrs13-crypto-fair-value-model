@@ -11,12 +11,8 @@ This paper addresses a critical valuation gap in current accounting practices un
 
 ---
 
-## 1. Introduction and Accounting Pain Points
-Under the prevailing guidance of IFRS 13, crypto-assets held by entities are frequently measured using Level 1 spot prices fetched directly from active exchanges. However, when these assets are programmatically locked within smart contracts (e.g., DeFi staking, programmatic vesting schedules, or governance lock-ups), they exhibit absolute contractual illiquidity. 
-
-Per IFRS 13.B2, a fair value measurement must reflect the characteristics of the asset that market participants would take into account, specifically including asset-specific restrictions. Blindly adopting unadjusted exchange spot prices overlooks these intrinsic legal and algorithmic constraints, creating significant artificial asset bubbles on corporate balance sheets [1]. Because these contract-specific inputs are not readily observable in active markets, the valuation must logically transition from Level 1 to a Level 3 framework.
-
-Traditional quantitative models employed by the "Big 4" audit firms to calculate the Discount for Lack of Marketability (DLOM)—such as the Chaffe or Finnerty models—are wholly adapted from traditional corporate finance [3, 4]. These legacy frameworks fail catastrophically in the Web3 domain, as they cannot account for continuous on-chain staking yields, protocol-level smart contract vulnerabilities, or dynamic unlocking conditions.
+## 1. Introduction
+Under the prevailing guidance and practice, digital assets held by entities are frequently measured and recorded under the regulation of IAS 38 Intangible Assets. However, digital assets as smart contracts (i.e. DeFi staking, programmatic vesting schedules, or governance lock-ups), they are dynamic and path-dependent (non-markovian). In other words, catagorizing them as intangible assets (i.e. patent, goodwill) that are mostly static, valuation failure may appear. 
 
 ---
 
