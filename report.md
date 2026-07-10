@@ -1,4 +1,4 @@
-# IFRS 13 Smart Contract-Bound Digital Asset Valuation Framework
+# Framework for Fair Value Measurement of Digital Asset under IFRS 13 Level 3 Asset 
 
 > **Author:** Z. H. Liu  
 > **Repository:** [Your GitHub Repository Link]  
@@ -7,7 +7,7 @@
 ---
 
 ## Abstract
-This paper addresses a critical valuation bubble in current accounting practices under IFRS 13 (Fair Value Measurement) regarding digital assets locked within rigid smart contract constraints. By bridging numerical methods in finance, we propose a Level 3 valuation technical guide. We formalize the economic loss of contractual illiquid assets using a modified jump-diffusion option-pricing framework, providing practitioners and auditors with a mathematically rigorous, reproducible framework for deriving the Discount for Lack of Marketability (DLOM).
+This paper addresses a critical valuation gap in current accounting practices under IFRS 13 (Fair Value Measurement) regarding digital assets. By bridging numerical analysis, we propose a Level 3 valuation technical guide with the assumption that the behavior of digital assets follows american options and euroupean options. The paper formalized a more suitable measurement for such assets with the consideration of gas fee, providing a prototype with Python programming for reproduction by auditors and relevant researchers.
 
 ---
 
