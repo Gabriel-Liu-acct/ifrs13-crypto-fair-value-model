@@ -1,4 +1,4 @@
-# Framework for Fair Value Measurement of Digital Asset under IFRS 13 Level 3 Asset 
+# Framework for Fair Value Measurement of Crypto Assets under IFRS 13 Level 3 Inputs 
 
 > **Author:** Z. H. Liu  
 > **Repository:** [Your GitHub Repository Link]  
@@ -7,12 +7,14 @@
 ---
 
 ## Abstract
-This paper addresses a critical valuation gap in current accounting practices under IFRS 13 (Fair Value Measurement) regarding digital assets. By bridging numerical analysis, we propose a Level 3 valuation technical guide with the assumption that the behavior of digital assets follows american options and euroupean options. The paper formalized a more suitable measurement for such assets with the consideration of gas fee, providing a prototype with Python programming for reproduction by auditors and relevant researchers.
+This paper addresses a critical valuation gap in current accounting practices under IFRS 13 (Fair Value Measurement) regarding crypto assets. By bridging numerical analysis, we proposed a Level 3 inputs valuation technical guide with the assumption that the behavior of crypto assets follows american options and euroupean options. The report formulated an alternative measurement for such assets with the consideration of gas fee, providing a prototype with Python programming for reproduction by auditors and relevant researchers.
 
 ---
 
 ## 1. Introduction
-Under the prevailing guidance and practice, digital assets held by entities are frequently measured and recorded under the regulation of IAS 38 Intangible Assets. However, digital assets as smart contracts (i.e. DeFi staking, programmatic vesting schedules, or governance lock-ups), they are dynamic and path-dependent (non-markovian). In other words, catagorizing them as intangible assets (i.e. patent, goodwill) that are mostly static, valuation failure may appear. 
+Under the prevailing guidance and practice, crypto assets held by entities are frequently measured and recorded according to the regulations of IAS 38 Intangible Assets. However, crypto assets as smart contracts (i.e. DeFi staking, programmatic vesting schedules, or governance lock-ups) are dynamic and mainly generate income from financial activities. In other words, catagorizing them as intangible assets (i.e. patent, goodwill, or copyrights) that are mostly static and generate income from oprating activities, valuation failure may appear. Such error could eventually causing harm to shareholders' rights of receiving accurate financial information with appropriate disclosures, especially when these two types of assets are not substantially identical or similar. Improving current practices, the research attempted to propose a revised version of Black-Scholes Partial Differencial Equation (B-S PDE) with a new variable *gas* to represent the friction in processing on-chain transcations, corresponds to the gas fees, which details would be further discussed in Section 4. 
+
+The choose of using B-S PDE is considered under few conditions to and the purpose of the research. Firstly, the lack of unified appropriate standards of crypto assets...
 
 ---
 
