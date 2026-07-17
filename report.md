@@ -12,32 +12,31 @@ This paper addresses a critical valuation gap in current accounting practices un
 ---
 
 ## 1. Introduction
-Under the prevailing guidance and practice, crypto assets held by entities are frequently measured and recorded according to the regulations of IAS 38 Intangible Assets. However, crypto assets as smart contracts (i.e. DeFi staking, programmatic vesting schedules, or governance lock-ups) are dynamic and mainly generate income from financial activities. In other words, catagorizing them as intangible assets (i.e. patent, goodwill, or copyrights) that are mostly static and generate income from oprating activities, valuation failure may appear. Such error could eventually causing harm to shareholders' rights of receiving accurate financial information with appropriate disclosures, especially when these two types of assets are not substantially identical or similar. Improving current practices, the research attempted to propose a revised version of Black-Scholes Partial Differencial Equation (B-S PDE) with a new variable *gas* to represent the friction in processing on-chain transcations, corresponds to the gas fees, which details would be further discussed in Section 4. 
+Under the prevailing guidance and practice, crypto assets held by entities are frequently measured and recorded according to the regulations of IAS 38 Intangible Assets. However, crypto assets as smart contracts (i.e. DeFi staking, programmatic vesting schedules, or governance lock-ups) are dynamic and path-dependent. In other words, catagorizing them as intangible assets (i.e. patent, goodwill, or copyrights) that are mostly static and generate income from oprating activities, substance-form mismatch may appear. Such error could eventually causing harm to shareholders' rights of receiving accurate financial information with appropriate disclosures, using either amortized cost or cost-less-impairment method would significantly underestimate the actual value. Improving current practices, the study attempted to propose a revised version of Black-Scholes Partial Differencial Equation (B-S PDE) with a new variable *gas* to represent the friction in processing on-chain transcations, corresponds to the gas fees, which details would be further discussed in Section 4. In Section 2.2, Section 5, and "measurement.py", Crank-Nicolson Finite Difference Method (C-N FDM) will be introduced as the numerical model for practical usage. 
 
-In this study, the model cannot natrually applicable to all kinds of crypto assets, hence it is necassary to mention its applicable asset type. First, the model cannot measure fair value of cryptocurrencies as this is the input of the model. Second, a crypto asset shall have a maturity date, or at least a planned duration of holding the asset. Third, this model can only consider assets behaving similar to european and american options, but it holds potential to expands to the similarity with exotic options like asian options and lookback options. Fourth, holding crypto assets with control shall not be considered for measurement under fair value as this could require equity or consolidation method. Details would be explain in Section 2 with further explaination on how it could satisfy the requirment of IFRS Level 3 inputs, while B-S PDE can formulates the measurement issue with the variables it contains with the amendment to the condition of crypto assets. Althought the assets applicible to the model are mostly not reconised to be handled under fair value measurement with the exsiting regulations, the introduction of the model could still be meaningful for analysing more complicated crypto assets. Consider the assumption related to derivatives of the corresponding cryptocurrencies, the application of B-S PDE is natrually feasible accordingly. This concept comes from an example when a smart contract is active, it is accounted under the cryptocurrencies assigned when made.
+[IFRS13] While the inputs of the model will be analysed in Section 2.1 are Level 2 inputs, most smart contracts are infeasible to find comparable assets in the market (some may not even be exchanged or traded). The fair value of the smart contracts are dependent to the model estimation would be defined under the standards of Level 3 input. Althought smart contracts are mostly not reconised to be handled under fair value measurement with the exsiting regulations, this study could still be meaningful for analysing more complicated crypto assets. Consider the assumption related to derivatives of the corresponding cryptocurrencies, options in this study, the application of B-S PDE is natrually feasible accordingly. This concept comes from an example when a smart contract is active, it is accounted under the cryptocurrencies assigned when made.
+
+1.1. Applicable Assets to be Studied and Measured  
+In this study, the model cannot natrually apply to all kinds of crypto assets, hence it is necassary to mention its limitation in the introduction.
+1. The model cannot measure fair value of cryptocurrencies. This is the input of the model.
+2. A crypto asset shall have a maturity date, or at least a planned duration of holding the asset.
+3. This model can only consider smart contracts behaving similar to options or similar financial derivatives on one cryptocurreny. While the programme provided in "measurement.py" can only process euroupean and american options, it holds space for amendment to all other exotic options and even on more than one cryptocurrencies. 
+4. Holding crypto assets with control shall not be considered for fair value measurement.
+5. Smart Contracts that are conventional intangible assets in nature (i.e. patent, copyrights) shall consider its economic substance.
 
 ---
 
 ## 2. Theoretical Framework and Numerical Methods
-To establise the formula that is applicable to measure fair value of crypto assets with the assumption associated with options, we may first recall the B-S PDE
-($\Omega$, $\mathcal{F}$, $\lbrace \mathcal{F}\_t \rbrace_{t \ge 0}$, $\mathbb{Q}$), where:
-* $\Omega$ represents the sample space containing all possible continuous price paths of the asset.
-* $\mathcal{F}$ is the global $\sigma$-algebra representing the collection of all verifiable events up to the terminal horizon.
-* $\lbrace \mathcal{F}\_t \rbrace_{t \ge 0}$ defines the filtration, modeling the dynamic flow of market information and data availability over time.
-* $\mathbb{Q}$ denotes the risk-neutral probability measure required for fair value expectations under IFRS 13.
+To establise the formula that is applicable to measure fair value of crypto assets with the assumption associated with options, we may first recall the B-S PDE $\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2} V}{\partial S^{2}} + rS\frac{\partial V}{\partial S} - rV = 0 \space$ with the terminal condition $\forall S, \space V(T, S) = K(S)$, where:
+* $V$ represents the option price.
+* $S$ represents the asset price.
+* $T$ represents the time to maturity.
+* $K$ represents the payoff at maturity.
+* $\sigma$ is the volitility of the asset.
+* $r$ is the risk-free rate.
+* $t$ is the time variable.
 
-The restriction imposed by a smart contract is mathematically framed as a constraint on the holder's filtration space. While the unconstrained market operates on $\mathcal{F}_t^{\text{open}}$, the locked holder's effective action space is projected onto a restricted information set $\mathcal{F}_t^{\text{restricted}} \subset \mathcal{F}_t^{\text{open}}$, rendering the asset non-transferable until a deterministic maturity $T$ or a stochastic stopping time $\tau$.
 
-To capture extreme crypto-market volatility and idiosyncratic protocol shock risks (e.g., smart contract exploits), the underlying asset price $S_t$ is modeled via a modified **Merton Jump-Diffusion Process** adjusted for the continuous on-chain staking yield $q$:
-
-$$dS_t = (r - q - \lambda \kappa) S_t dt + \sigma S_t dW_t + S_{t-} dN_t$$
-
-Where:
-* $r$: The risk-free interest rate.
-* $q$: The continuous staking yield or programmatic rewards injected back into the contract by the protocol.
-* $\sigma$: The annualized asset volatility calibrated from historical exchange data [2].
-* $dW_t$: A standard Brownian motion under the risk-neutral measure $\mathbb{Q}$.
-* $dN_t$: A Poisson process with intensity $\lambda$, capturing sudden downward price jumps triggered by protocol failures.
 
 ---
 
