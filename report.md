@@ -12,9 +12,9 @@ This paper addresses a critical valuation gap in current accounting practices un
 ---
 
 ## 1. Introduction
-Under prevailing practice, crypto assets held by entities are frequently accounted for under IAS 38 Intangible Assets. However, crypto assets in form of smart contracts (i.e. DeFi staking, programmatic vesting schedules, or governance lock-ups) exhibit dynamic and path-dependent behaviour. While many discussions have questioned whether a framework designed for traditional intangible assets (i.e. patent, goodwill, or copyrights) could fully reflects the economic substance of various crypto assets, consensus has not been reached due to lack of approriate methodologies. In particular, this study attempts to provide an alternative method by proposing a revised version of the Black-Scholes Partial Differencial Equation (B-S PDE) [1] with a new variable *g* to represent the consideration of gas fees during processing on-chain transcation. Further details are discussed in Section 2. In Section 2.3 and "measurement.py", Crank-Nicolson Finite Difference Method (C-N FDM) [2] is applied as the numerical model for practical implementation. 
+[1], [2] Under prevailing practice, crypto assets held by entities are frequently accounted for under IAS 38 Intangible Assets. However, crypto assets in the form of smart contracts (i.e. DeFi staking, programmatic vesting schedules, or governance lock-ups) exhibit dynamic and path-dependent behaviour. While many discussions have questioned whether a framework designed for traditional intangible assets (i.e. patent, goodwill, or copyrights) could fully reflect the economic substance of various crypto assets, consensus has not been reached due to a lack of approriate definitions and methodologies. In particular, this study attempts to provide an alternative method by proposing [3] a revised version of the Black-Scholes Partial Differencial Equation (B-S PDE) with a new variable *g* to represent the consideration of gas fees during processing on-chain transcations. Further details are discussed in Section 2. In Section 2.3 and "measurement.py", [4] the Crank-Nicolson Finite Difference Method (C-N FDM) is applied as the numerical model for practical implementation. 
 
-While the model inputs, which will be analysed in Section 2.1, are classified as Level 2 inputs under IFRS 13 [3], many smart contracts lack comparable assets in active market. Their fair value is hence dependent on model estimation and would fall under Level 3 input classification. Althought smart contracts cannot be accounted for under fair value measurement with the exsiting regulations, the proposed model remains meaningful for analysing complex crypto assets. Consider the assumption related to derivatives of the corresponding cryptocurrencies, particularly options in this study, the application of B-S PDE is natrually feasible accordingly. The concept was inspired from an example when a smart contract is active, it is accounted under the cryptocurrencies assigned when made.
+It is worth noting that [1], [2] smart contracts cannot be readily accounted for under fair value measurement with the exsiting regulations, but the proposed model may remains meaningful for analysing complex crypto assets and the extension of ideas. While the model inputs, which will be analysed in Section 2.1, [5] are classified as Level 2 inputs under IFRS 13, many smart contracts lack comparable assets in active markets. [5] Their fair value is hence dependent on model estimation and would fall under Level 3 input classification. Consider the assumption related to derivatives of the corresponding cryptocurrencies, particularly options in this study, the application of the B-S PDE could be natrually feasible accordingly. The concept was inspired from an example when a smart contract is active, it is accounted under the cryptocurrencies assigned when made.
 
 ### 1.1 Applicable Assets to be Studied and Measured  
 In this study, the model cannot natrually apply to all kinds of crypto assets, hence it is necassary to mention its limitation in the introduction, thre phrase "smart contract" in the following parts of this report will follow this set of limitations.
@@ -29,7 +29,7 @@ In this study, the model cannot natrually apply to all kinds of crypto assets, h
 ## 2. Valuation Model and Its Numerical Methods
 In this section, it will first introduce the modification of B-S PDE to the condition of smart contracts. Followed by the explaination of theoretical numerical methods.
 
-### 2.1 
+### 2.1 Theoretical Framwork for the Modification
 To establise the formula that is applicable to measure fair value of crypto assets with the assumption associated with options, we may first recall the [B&S] B-S PDE $\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2} V}{\partial S^{2}} + rS\frac{\partial V}{\partial S} - rV = 0 \space$ (2.1) with the boundary condition $\forall S, \space V(T, S) = max(\mathcal{P}, \space S^{*})$, where:
 * $V$ represents the option price.
 * $S$ represents the asset price.
@@ -57,7 +57,7 @@ For the $g(\sigma)$, this is an extra dummy variable compare to the equation 2.1
 ## 4. Numerical Implementation
 
 
-### 4.1 Crank-Nikolson Finite Difference Method
+### 4.1 Crank-Nicolson Finite Difference Method
 
 
 ### 4.2 Concepts of Convergence
@@ -72,9 +72,13 @@ For the $g(\sigma)$, this is an extra dummy variable compare to the equation 2.1
 ## References
 [1] International Financial Reporting Interpretations Committee, "Holdings of Cryptocurrencies—Agenda decision to finalise," IFRS, London, United Kingdom, June 2019. Accessed Jul.20, 2026. [Online]. Available: https://www.ifrs.org/news-and-events/updates/ifric/2019/ifric-update-march-2019/#1
 
-[?] Financial Accounting Standard Board and International Accounting Standard Board, "FASB | IASB Joint Education Meeting: Accounting for and Disclosure of Crypto Assets (Agenda Paper 12A)" FASB, Norwalk, CT, USA. Accessed: Jul. 20, 2026. [Online]. Available: https://www.ifrs.org/content/dam/ifrs/meetings/2022/september/fasb-iasb/ap12a-digital-assets-fasb-accounting-for-and-disclosure-of-crypto-assets-project-update.pdf
+[2] Financial Accounting Standard Board and International Accounting Standard Board, "FASB | IASB Joint Education Meeting: Accounting for and Disclosure of Crypto Assets (Agenda Paper 12A)" FASB, Norwalk, CT, USA. Accessed: Jul. 20, 2026. [Online]. Available: https://www.ifrs.org/content/dam/ifrs/meetings/2022/september/fasb-iasb/ap12a-digital-assets-fasb-accounting-for-and-disclosure-of-crypto-assets-project-update.pdf
 
-[?] IFRS Foundation, "IFRS 13 Fair Value Measurement." Accessed: Aug. 13, 2026. [Online]. Available: https://www.ifrs.org/issued-standards/list-of-standards/ifrs-13-fair-value-measurement.html/content/dam/ifrs/publications/html-standards/english/2026/issued/ifrs13/
+[3] F. Black and M. Scholes, "The Pricing of Options and Corporate Liabilities," *J. Polit. Econ.*, vol. 81, pp. 637-654, 1973.
+
+[4] Crank and Nicolson
+
+[5] IFRS Foundation, "IFRS 13 Fair Value Measurement." Accessed: Aug. 13, 2026. [Online]. Available: https://www.ifrs.org/issued-standards/list-of-standards/ifrs-13-fair-value-measurement.html/content/dam/ifrs/publications/html-standards/english/2026/issued/ifrs13/
 
 [?] F. A. Longstaff, “How Much Can Marketability Affect Security Values?” *J. Finance, vol. 50, no. 5, pp. 1767–1774, Dec. 1995, doi: 10.1111/j.1540-6261.1995.tb05197.x.
 
@@ -85,5 +89,3 @@ For the $g(\sigma)$, this is an extra dummy variable compare to the equation 2.1
 [?] L. Clewlow and C. Strickland, *Implementing Derivatives Models*. John Wiley & Sons Ltd, 1998.
 
 [?] L.C.G. Rogers and D. Talay, *Numerical Methods In Finance*. Canbridge University Press, 1997.
-
-[?] F. Black and M. Scholes, "The Pricing of Options and Corporate Liabilities," *J. Polit. Econ.*, vol. 81, pp. 637-654, 1973.
