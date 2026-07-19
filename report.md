@@ -12,22 +12,25 @@ This paper addresses a critical valuation gap in current accounting practices un
 ---
 
 ## 1. Introduction
-Under the prevailing guidance and practice, crypto assets held by entities are frequently measured and recorded according to the regulations of IAS 38 Intangible Assets. However, crypto assets as smart contracts (i.e. DeFi staking, programmatic vesting schedules, or governance lock-ups) are dynamic and path-dependent. In other words, catagorizing them as intangible assets (i.e. patent, goodwill, or copyrights) that are mostly static and generate income from oprating activities, substance-form mismatch may appear. Such error could eventually causing harm to shareholders' rights of receiving accurate financial information with appropriate disclosures, using either amortized cost or cost-less-impairment method would significantly underestimate the actual value. Improving current practices, the study attempted to propose a revised version of Black-Scholes Partial Differencial Equation (B-S PDE) with a new variable *gas* to represent the friction in processing on-chain transcations, corresponds to the gas fees, which details would be further discussed in Section 4. In Section 2.2, Section 5, and "measurement.py", Crank-Nicolson Finite Difference Method (C-N FDM) will be introduced as the numerical model for practical usage. 
+Under the prevailing guidance and practice, crypto assets held by entities are frequently measured and recorded according to the regulations of IAS 38 Intangible Assets. However, crypto assets as smart contracts (i.e. DeFi staking, programmatic vesting schedules, or governance lock-ups) are dynamic and path-dependent. In other words, catagorizing them as intangible assets (i.e. patent, goodwill, or copyrights) that are mostly static and generate income from oprating activities, substance-form mismatch may appear. Such error could eventually causing harm to shareholders' rights of receiving accurate financial information with appropriate disclosures, using either amortized cost or cost-less-impairment method would significantly underestimate the actual value. Improving current practices, the study attempted to propose a revised version of Black-Scholes Partial Differencial Equation (B-S PDE) with a new variable *gas* to represent the friction in processing on-chain transcations, corresponds to the gas fees, which details would be further discussed in Section 2.2. In Section 2.3 and "measurement.py", Crank-Nicolson Finite Difference Method (C-N FDM) will be introduced as the numerical model for practical usage. 
 
 [IFRS13] While the inputs of the model will be analysed in Section 2.1 are Level 2 inputs, most smart contracts are infeasible to find comparable assets in the market (some may not even be exchanged or traded). The fair value of the smart contracts are dependent to the model estimation would be defined under the standards of Level 3 input. Althought smart contracts are mostly not reconised to be handled under fair value measurement with the exsiting regulations, this study could still be meaningful for analysing more complicated crypto assets. Consider the assumption related to derivatives of the corresponding cryptocurrencies, options in this study, the application of B-S PDE is natrually feasible accordingly. This concept comes from an example when a smart contract is active, it is accounted under the cryptocurrencies assigned when made.
 
-1.1. Applicable Assets to be Studied and Measured  
-In this study, the model cannot natrually apply to all kinds of crypto assets, hence it is necassary to mention its limitation in the introduction.
+### 1.1 Applicable Assets to be Studied and Measured  
+In this study, the model cannot natrually apply to all kinds of crypto assets, hence it is necassary to mention its limitation in the introduction, thre phrase "smart contract" in the following parts of this report will follow this set of limitations.
 1. The model cannot measure fair value of cryptocurrencies. This is the input of the model.
 2. A crypto asset shall have a maturity date, or at least a planned duration of holding the asset.
 3. This model can only consider smart contracts behaving similar to options or similar financial derivatives on one cryptocurreny. While the programme provided in "measurement.py" can only process euroupean and american options, it holds space for amendment to all other exotic options and even on more than one cryptocurrencies. 
 4. Holding crypto assets with control shall not be considered for fair value measurement.
-5. Smart Contracts that are conventional intangible assets in nature (i.e. patent, copyrights) shall consider its economic substance.
+5. Smart Contracts that are conventional intangible assets in nature (i.e. patent, copyrights) shall consider its economic substance, which may not be applicable to the model.
 
 ---
 
 ## 2. Theoretical Framework and Numerical Methods
-To establise the formula that is applicable to measure fair value of crypto assets with the assumption associated with options, we may first recall the B-S PDE $\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2} V}{\partial S^{2}} + rS\frac{\partial V}{\partial S} - rV = 0 \space$ with the terminal condition $\forall S, \space V(T, S) = K(S)$, where:
+In this section, it will first introduce the modification of B-S PDE to the condition of smart contracts. Followed by the study of the gas fee. Lastly, the numerical models will be elabourated.
+
+### 2.1 
+To establise the formula that is applicable to measure fair value of crypto assets with the assumption associated with options, we may first recall the B-S PDE $\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2} V}{\partial S^{2}} + rS\frac{\partial V}{\partial S} - rV = 0 \space$ (2.1) with the terminal condition $\forall S, \space V(T, S) = K$, where:
 * $V$ represents the option price.
 * $S$ represents the asset price.
 * $T$ represents the time to maturity.
@@ -36,7 +39,14 @@ To establise the formula that is applicable to measure fair value of crypto asse
 * $r$ is the risk-free rate.
 * $t$ is the time variable.
 
+While in this study, the formula changes to $\frac{\partial W}{\partial t} + \frac{1}{2}\sigma^{2}P^{2}\frac{\partial^{2} W}{\partial P^{2}} + (rP-g(\sigma))\frac{\partial W}{\partial P} - rW = 0 \space$ (2.2) with the terminal condition $\forall P, \space W(T, P) = \overline{K}$, where:
+* $W$ represents the fair value of the smart contract.
+* $P$ represents the fair value of the cryptocurrency.
+* $g(\sigma)$ represents the gas fee.
+* $\overline{K}$ represents the economic value of the smart contract at the maturity.
+* all other variables not mentioned have very similar properties to the original B-S PDE.
 
+For the $g(\sigma)$, this is an extra dummy variable compare to the equation 2.1. It represents the gas fee per year to be paid if you choose to execute the smart contract at time t with the corresponding volitility of the cryptocurrency. Althought gas fee acts as a commission fee in practice, it became a liquidity drain rate for pricing the smart contract.
 
 ---
 
@@ -58,7 +68,7 @@ The complete, modular Python code implementation for this numerical grid matrix 
 ---
 
 ## 4. Results and Audit Guidelines
-*(To be populated with generated 3D sensitivity surfaces plotting DLOM against Volatility and Lock-up periods, alongside the finalized Valuation Matrix for practitioners).*
+*(To be processed).*
 
 ---
 
