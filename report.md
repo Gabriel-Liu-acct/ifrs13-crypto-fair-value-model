@@ -30,14 +30,7 @@ In this study, the model cannot natrually apply to all kinds of crypto assets, h
 In this section, it will first introduce the modification of B-S PDE to the condition of smart contracts. Followed by the explaination of theoretical numerical methods.
 
 ### 2.1 Theoretical Framwork for the Modification
-To establise the formula that is applicable to measure fair value of crypto assets with the assumption associated with options, we may first recall the [B&S] B-S PDE $\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2} V}{\partial S^{2}} + rS\frac{\partial V}{\partial S} - rV = 0 \space$ (2.1) with the boundary condition $\forall S, \space V(T, S) = max(\mathcal{P}, \space S^{*})$, where:
-* $V$ represents the option price.
-* $S$ represents the asset price.
-* $T$ represents the time to maturity.
-* $K$ represents the payoff at maturity.
-* $\sigma$ is the volitility of the asset.
-* $r$ is the risk-free rate.
-* $t$ is the time variable.
+To establise the formula that is applicable to measure fair value of crypto assets with the assumption associated with options, we may first recall [3] the B-S PDE $BS(V) = \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2} V}{\partial S^{2}} + (r-q)S\frac{\partial V}{\partial S} - rV  \space$ (2.1) with the boundary condition $BS(V) \le 0, \space V \ge \overline{P}, \space BS(V) \cdot (V - \overline{P}) = 0$, where $\overline{P}$ is the payoff fuction.
 
 While in this study, the formula changes to $\frac{\partial W}{\partial t} + \frac{1}{2}\sigma^{2}P^{2}\frac{\partial^{2} W}{\partial P^{2}} + rP\frac{\partial W}{\partial P} - rW = 0 \space$ (2.2) with the terminal condition $\forall P, \space W(T, P) = \overline{K}$ and boundary condition $W_T = max(0, P_T - \overline{K})$ where:
 * $W$ represents the fair value of the smart contract.
