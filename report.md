@@ -17,12 +17,12 @@ This paper addresses a critical valuation gap in current accounting practices un
 It is worth noting that [1], [2] smart contracts cannot be readily accounted for under fair value measurement with the exsiting regulations, but the proposed model may remains meaningful for analysing complex crypto assets and the extension of ideas. While the model inputs, which will be analysed in Section 2.1, [6] are classified as Level 2 inputs under IFRS 13, many smart contracts lack comparable assets in active markets. [6] Their fair value is hence dependent on model estimation and would fall under Level 3 input classification. Consider the assumption related to derivatives of the corresponding cryptocurrencies, particularly options in this study, the application of the B-S PDE could be natrually feasible accordingly. The concept was inspired from an example when a smart contract is active, it is accounted under the cryptocurrencies assigned when made.
 
 ### 1.1 Applicable Assets to be Studied and Measured  
-In this study, the model cannot natrually apply to all kinds of crypto assets, hence it is necassary to mention its limitation in the introduction, the phrase "smart contract" in the following discussion of this report will follow this set of limitations.
-1. The model cannot measure fair value of cryptocurrencies. This is the input of the model.
-2. A crypto asset shall have a maturity date, or at least a planned duration of holding the asset.
-3. This model can only consider smart contracts behaving similar to options or similar financial derivatives on one cryptocurreny. While the programme provided in "measurement.py" can only process euroupean and american options, it holds space for amendment to all other exotic options and even on more than one cryptocurrencies. 
-4. Holding crypto assets with control shall not be considered for fair value measurement.
-5. Smart Contracts that are conventional intangible assets in nature (i.e. patent, copyrights) shall consider its economic substance, which may not be applicable to the model.
+The model proposed in this study is not universally applicable to all types of crypto assets. It is therefore necassary to outline its limitation at the outset. The term "smart contract" will refer exclusively to assets that satisfy the following criteria.
+1. Cryptocurrencies are excluded to the fair value measurement with the model as an input. 
+2. The crypto asset must have a maturity date, or at least a pre-defined holding period.
+3. This model is designed for smart contracts behaving similarly to options or other financial derivatives on a single cryptocurreny. The accompanying programme "measurement.py" currently supports Euroupean and American options, but the code is structured to accomodate extensions to exotic options and multi-cryptocurrencies smart contracts. 
+4. Crypto assets that grant the holder gorvernance rights or influence over the underlying protocol (i.e. governance tokens in a DAO) are excluded from the model. Such assets may require consolidation or equity method towards the economic substance. 
+5. Smart Contracts that are conventional intangible assets in nature (i.e. patent, copyrights) shall consider its economic substance, and may not be suitable for measurement with this model.
 
 ---
 
@@ -33,13 +33,14 @@ In this section, it will first introduce the modification of B-S PDE to the cond
 To establise the formula that is applicable to measure fair value of crypto assets with the assumption associated with options, we may first recall [3], [4] the B-S PDE $BS(V) = \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2} V}{\partial S^{2}} + (r-q)S\frac{\partial V}{\partial S} - rV  \space$ (2.1) with the boundary conditions $BS(V) \le 0, \space V \ge \Phi, \space BS(V) \cdot (V - \Phi) = 0$, where $\Phi$ is the payoff fuction.
 
 While in this study, the formula changes to $BS(W) = \frac{\partial W}{\partial t} + \frac{1}{2}\sigma^{2}P^{2}\frac{\partial^{2} W}{\partial P^{2}} + (r-q)P\frac{\partial W}{\partial P} - rW\space$ (2.2) with the boundary conditions $BS(W) \le 0, \space W \ge (\hat{\Phi} - g(\sigma)), \space BS(W) \cdot (W - \hat{\Phi} + g(\sigma)) = 0$ where:
-* $W$ represents the fair value of the smart contract.
-* $P$ represents the fair value of the cryptocurrency.
-* $g(\sigma)$ represents the gas fee, explained in Section 3.
-* $\hat{\Phi}$ represents the economic value function to the entity holding the smart contract at the maturity, details explained later.
+* $W$ denotes the fair value of the smart contract.
+* $P$ denotes the fair value of the cryptocurrency.
+* $g(\sigma)$ is the gas fee function, explained in Section 3.
+* $\hat{\Phi}$ is the economic value function to the entity holding the smart contract at the maturity, details explained later.
 * all other variables not mentioned have very similar properties to the original B-S PDE.
 
-[3], [4] In formula 2.1, $\Phi$ is a simple payoff function $(S-K)^{+}$, which $K$ is the strike price of the option, assuming call options. In formula 2.2, $\hat{\Phi}$ becomes an economic value function defined as $(S-\hat{K})$
+[3], [4] In formula (2.1), $\Phi$ is the standard payoff function for a call option, defined as $(S-K)^{+}$, where $K$ denotes strike price. In formula (2.2), $\hat{\Phi}$ generalized to an economic value function of the form $(S-\hat{K})^{+}$, where $\hat{K}$ represents the expected economic benefit derived from the smart contracts, again assuming a call option. 
+In the boundary condition of formula (2.2), $\hat{K}$ is not necessarily a fixed strike price but a firm-specific estimate of the contract's expected benefit. For instance, if a smart contract is to receive discounts on a Web3.0 service, $\hat{K}$ would correspond to the economic value of the discount expected by maturity. More generally, $\hat{K}$ can be interpreted as the value of the desinated amount of cryptocurrencies contracted to return upon the maturity. 
 
 ### 2.2 Theory behind the Numerical Methods
 
