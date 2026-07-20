@@ -12,7 +12,7 @@ This paper addresses a critical valuation gap in current accounting practices un
 ---
 
 ## 1. Introduction
-[1], [2] Under prevailing practice, crypto assets held by entities are frequently accounted for under IAS 38 Intangible Assets. However, crypto assets in the form of smart contracts (i.e. DeFi staking, programmatic vesting schedules, or governance lock-ups) exhibit dynamic and path-dependent behaviour. While many discussions have questioned whether a framework designed for traditional intangible assets (i.e. patent, goodwill, or copyrights) could fully reflect the economic substance of various crypto assets, consensus has not been reached due to a lack of approriate definitions and methodologies. In particular, this study attempts to provide an alternative method by proposing [3], [4] a revised version of the Black-Scholes Partial Differencial Equation (B-S PDE) with a new variable *g* to represent the consideration of gas fees during processing on-chain transcations. Further details are discussed in Section 2. In Section 2.3 and "measurement.py", [3], [4], [5] the Crank-Nicolson Finite Difference Method (C-N FDM) is applied as the numerical model for practical implementation. 
+[1], [2] Under prevailing practice, crypto assets held by entities are frequently accounted for under IAS 38 Intangible Assets. However, crypto assets in the form of smart contracts (i.e. DeFi staking, programmatic vesting schedules, or governance lock-ups) exhibit dynamic and path-dependent behaviour. While many discussions have questioned whether a framework designed for traditional intangible assets (i.e. patent, goodwill, or copyrights) could fully reflect the economic substance of various crypto assets, consensus has not been reached due to a lack of approriate definitions and methodologies. In particular, this study attempts to provide an alternative method by proposing [3], [4] a revised version of the Black-Scholes Partial Differencial Equation (B-S PDE)<sup>1</sup> with a new variable *g* to represent the consideration of gas fees during processing on-chain transcations. Further details are discussed in Section 2. In Section 2.3 and "measurement.py", [3], [4], [5] the Crank-Nicolson Finite Difference Method (C-N FDM)<sup>2</sup> is applied as the numerical model for practical implementation. 
 
 It is worth noting that [1], [2] smart contracts cannot be readily accounted for under fair value measurement with the exsiting regulations, but the proposed model may remains meaningful for analysing complex crypto assets and the extension of ideas. While the model inputs, which will be analysed in Section 2.1, [6] are classified as Level 2 inputs under IFRS 13, many smart contracts lack comparable assets in active markets. [6] Their fair value is hence dependent on model estimation and would fall under Level 3 input classification. Consider the assumption related to derivatives of the corresponding cryptocurrencies, particularly options in this study, the application of the B-S PDE could be natrually feasible accordingly. The concept was inspired from an example when a smart contract is active, it is accounted under the cryptocurrencies assigned when made.
 
@@ -68,6 +68,10 @@ For the $g(\sigma)$, this is an extra dummy variable compare to the equation 2.1
 
 ## 5. Sensitivity Test
 *(To be processed).*
+
+
+<sup>1</sup> (Denotes for B-S PDE)
+<sup>2</sup> (Denotes for C-N FDM)
 
 ---
 
