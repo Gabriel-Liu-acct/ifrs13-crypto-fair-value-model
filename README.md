@@ -20,7 +20,6 @@
 │   ├── appendix.docx     
 │   └── data_process.r             
 │
-├── report.md     
-│   
+├── report.md       
 ├── measurement.py               
 └── README.md
