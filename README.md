@@ -19,9 +19,8 @@
 │   ├── crypto_data.csv
 │   ├── appendix.docx     
 │   └── data_process.r             
+│
 ├── report.md     
-├── models/                 
-│   ├── contract_pde.py     
-│   └── stopping_mc.py      
+│   
 ├── measurement.py               
 └── README.md
