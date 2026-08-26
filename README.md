@@ -5,7 +5,8 @@
 
 ---
 
-## 
+## Motives of this Research Project
+The primary objective of this study is to support the commercial adoption of decentralized networks, motivated by the growing need for transparent and reliable financial reporting in the Web3.0 economy. The model is designed to bridge the gap between existing accounting standards and the economic substance of smart contract-based assets. It allows stakeholders to verify information from business entities' disclosures regarding their digital asset holdings. 
 
 ---
 
@@ -15,11 +16,9 @@
 ## Repository Structure
 
 ```text
-├── data/
-│   ├── crypto_data.csv
-│   ├── appendix.docx     
-│   └── data_process.r             
+├── data
+│                
 │
 ├── report.md       
-├── measurement.py               
+├── Measurement.py               
 └── README.md
