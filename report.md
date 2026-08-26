@@ -37,16 +37,17 @@ To establish the formula that is applicable to measure fair value of crypto asse
 * $q$ denotes the dividend yield of the asset. 
 * $\Phi$ is the standard payoff function, details explained later.
 
-
 While in this study, the formula changes to $BS(W) = \frac{\partial W}{\partial t} + \frac{1}{2}\sigma^{2}P^{2}\frac{\partial^{2} W}{\partial P^{2}} + (r-q)P\frac{\partial W}{\partial P} - rW\space$ (2.2) with the boundary conditions $BS(W) \le 0, \space W \ge \hat{\Phi}, \space BS(W) \cdot (W - \hat{\Phi}) = 0$ where:
 * $W$ denotes the fair value of the smart contract.
 * $P$ denotes the fair value of the cryptocurrency.
 * $\hat{\Phi}$ is the economic value function to the entity holding the smart contract at the maturity, details explained later.
 * All other variables not mentioned have very similar properties to the original B-S PDE.
 
-[3], [4] In formula (2.1), $\Phi$ is the standard payoff function for an option, defined as $(S-K)^{+}$ for call options ($(K-S)^{+}$ for put options), where $K$ denotes strike price. In formula (2.2), $\hat{\Phi}$ generalized to an economic value function of the form $(S-\hat{K})^{+}$, where $\hat{K}$ represents the expected economic benefit derived from the smart contracts, again assuming a call option. 
-In the boundary condition of formula (2.2), $\hat{K}$ is not necessarily a fixed strike price but a firm-specific estimate of the contract's expected benefit. For instance, if a smart contract is to receive discounts on a Web3.0 service, $\hat{K}$ would correspond to the economic value of the discount expected by maturity. More generally, $\hat{K}$ can be interpreted as the value of the destinated number of cryptocurrencies contracted to return upon the maturity. 
+[3], [4] In formula (2.1), $\Phi$ denotes the standard payoff function for an option, defined as $(S-K)^{+}$ for call options (and $(K-S)^{+}$ for put options), where $K$ is the contractually fixed strike price. 
 
+In formula (2.2), the payoff function is generalized to $\hat{\Phi}$, defined as $(S-\hat{K})^{+}$ for call options, where $\hat{K}$ replaces the conventional strike price $K$ and represents the expected economic benefit derived from the smart contracts at maturity. Unlike the fixed K in the standard framework, $\hat{K}$ is a firm-specific estimate, to be determined in accordance with related accounting and legal standards.
+
+The interpretation of $\hat{K}$ is context-dependent. For a lending receipt that entitles the holder to services from a DAO entity, $\hat{K}$ corresponds to the expected economic value of those services by maturity. For contracts that obligate the return of a specified cryptocurrency amount, the expected cryptocurrency amount should be converted into its equivalent fiat value by maturity. Under all circumstances, $\hat{K}$ should remain expressed in the same currency unit as $S$. 
 
 ---
 
