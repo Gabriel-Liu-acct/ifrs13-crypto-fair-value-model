@@ -69,7 +69,7 @@ In this study, Crank-Nicolson Finite Difference Method would be applied for the 
 
 ---
 
-## 5. Limitation and Conclusion
+## 5. Limitation of the Study
 *(To be processed).*
 
 
