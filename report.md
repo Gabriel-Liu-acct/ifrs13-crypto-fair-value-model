@@ -12,63 +12,68 @@ This paper addresses a critical valuation gap in current accounting practices un
 ---
 
 ## 1. Introduction
-[1], [2] Under prevailing practice, crypto assets held by entities are frequently accounted for under IAS 38 Intangible Assets. However, crypto assets in the form of smart contracts (i.e. DeFi staking, programmatic vesting schedules, or governance lock-ups) exhibit dynamic and path-dependent behaviour. While many discussions have questioned whether a framework designed for traditional intangible assets (i.e. patent, goodwill, or copyrights) could fully reflect the economic substance of various crypto assets, consensus has not been reached due to a lack of approriate definitions and methodologies. In particular, this study attempts to provide an alternative method by proposing [3], [4] a revised version of the Black-Scholes Partial Differencial Equation (B-S PDE)<sup>1</sup>. Further details are discussed in Section 2. In Section 2.3 and "measurement.py", [3], [4], [5] the Crank-Nicolson Finite Difference Method (C-N FDM)<sup>2</sup> is applied as the numerical model for practical implementation. 
+[1], [2] Under prevailing practice, crypto assets held by entities are frequently accounted for under IAS 38 Intangible Assets. However, crypto assets in the form of smart contracts (i.e. option receipt, lending receipt, or locked tokens) exhibit dynamic and path-dependent behavior. While many discussions have questioned whether a framework designed for traditional intangible assets (i.e. patent, goodwill, or copyrights) could fully reflect the economic substance of various crypto assets, consensus has not been reached due to a lack of appropriate definitions and methodologies. In particular, this study attempts to provide an alternative method by proposing [3], [4] a revised version of the Black-Scholes Partial Differential Equation (B-S PDE)<sup>1</sup>. Further details are discussed in Section 2. In Section 2.3 and "measurement.py", [3], [4], [5] the Crank-Nicolson Finite Difference Method (C-N FDM)<sup>2</sup> is applied as the numerical model for practical implementation. 
 
 It is worth noting that [1], [2] smart contracts cannot be readily accounted for under fair value measurement with the existing regulations, but the proposed model may remain meaningful for analyzing complex crypto assets and the extension of ideas. While some of the model inputs, which will be analyzed in Section 2.1, [6] are classified as Level 2 inputs under IFRS 13, many smart contracts lack comparable assets in active markets. [6] Their fair value is hence dependent on model estimation and would fall under Level 3 input classification. Consider the assumption related to derivatives of the corresponding cryptocurrencies, particularly options in this study, the application of the B-S PDE could be naturally feasible accordingly. The concept was inspired from an example when a smart contract is active, it is accounted under the cryptocurrencies assigned when made.
 
 ### 1.1 Applicable Assets to be Studied and Measured  
 The model proposed in this study is not universally applicable to all types of crypto assets. It is therefore necessary to outline its limitation at the outset. The term "smart contract" will refer exclusively to assets that satisfy the following criteria.
 1. Cryptocurrencies are excluded to the fair value measurement with the model as an input. 
-2. The crypto asset must have a maturity date, or at least a pre-defined holding period.
-3. This model is designed for smart contracts behaving similarly to options or other financial derivatives on a single cryptocurrency. The accompanying program "Measurement.py" currently supports European and American options, but the code is structured to accommodate extensions to exotic options.
-4. Crypto assets that grant the holder governance rights or influence over the underlying protocol (i.e. governance tokens) are excluded from the model. Such assets may require consolidation or equity method towards the economic substance. 
-5. Smart Contracts that are conventional intangible assets in nature (i.e. patent, copyrights) shall consider its economic substance and may not be suitable for measurement with this model.
-6. The effect of gas fee is neglected for 
+2. The crypto asset must have a maturity date.
+3. The crypto asset must be intended for long-term holding.
+4. This model is designed for smart contracts behaving similarly to options or other financial and non- derivatives on a single cryptocurrency. The accompanying program "Measurement.py" currently supports European and American options, but the code is structured to accommodate extensions to exotic options.
+5. Crypto assets that grant the holder governance rights or influence over the underlying protocol (i.e. governance tokens) are excluded from the model. Such assets may require other valuation method towards the economic substance. 
+6. Smart Contracts that are conventional intangible assets in nature (i.e. patent, copyrights) shall consider its economic substance and may not be suitable for measurement with this model.
+ 
 
 ---
 
-## 2. Valuation Model and Its Numerical Methods
-In this section, it will first introduce the modification of B-S PDE to the condition of smart contracts. Followed by the explanation of theoretical numerical methods.
-
-### 2.1 Theoretical Framework for the Modification
+## 2. Valuation Model and Its Numerical Methods 
 To establish the formula that is applicable to measure fair value of crypto assets with the assumption associated with options, we may first recall [3], [4] the B-S PDE $BS(V) = \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2} V}{\partial S^{2}} + (r-q)S\frac{\partial V}{\partial S} - rV  \space$ (2.1) with the boundary conditions $BS(V) \le 0, \space V \ge \Phi, \space BS(V) \cdot (V - \Phi) = 0$, where $\Phi$ is the payoff function.
+* $t$ denotes the time variable
+* $V$ denotes the fair value of the option.
+* $S$ denotes the fair value of the underlying asset.
+* $\sigma$ denotes the implicit volatility of the asset.
+* $r$ denotes the risk-free rate.
+* $q$ denotes the dividend yield of the asset. 
+* $\Phi$ is the standard payoff function, details explained later.
 
-While in this study, the formula changes to $BS(W) = \frac{\partial W}{\partial t} + \frac{1}{2}\sigma^{2}P^{2}\frac{\partial^{2} W}{\partial P^{2}} + (r-q)P\frac{\partial W}{\partial P} - rW\space$ (2.2) with the boundary conditions $BS(W) \le 0, \space W \ge (\hat{\Phi} - g(\sigma)), \space BS(W) \cdot (W - \hat{\Phi} + g(\sigma)) = 0$ where:
+
+While in this study, the formula changes to $BS(W) = \frac{\partial W}{\partial t} + \frac{1}{2}\sigma^{2}P^{2}\frac{\partial^{2} W}{\partial P^{2}} + (r-q)P\frac{\partial W}{\partial P} - rW\space$ (2.2) with the boundary conditions $BS(W) \le 0, \space W \ge \hat{\Phi}, \space BS(W) \cdot (W - \hat{\Phi}) = 0$ where:
 * $W$ denotes the fair value of the smart contract.
 * $P$ denotes the fair value of the cryptocurrency.
-* $g(\sigma)$ is the gas fee function, explained in Section 3.
 * $\hat{\Phi}$ is the economic value function to the entity holding the smart contract at the maturity, details explained later.
 * All other variables not mentioned have very similar properties to the original B-S PDE.
 
-[3], [4] In formula (2.1), $\Phi$ is the standard payoff function for a call option, defined as $(S-K)^{+}$, where $K$ denotes strike price. In formula (2.2), $\hat{\Phi}$ generalized to an economic value function of the form $(S-\hat{K})^{+}$, where $\hat{K}$ represents the expected economic benefit derived from the smart contracts, again assuming a call option. 
+[3], [4] In formula (2.1), $\Phi$ is the standard payoff function for an option, defined as $(S-K)^{+}$ for call options ($(K-S)^{+}$ for put options), where $K$ denotes strike price. In formula (2.2), $\hat{\Phi}$ generalized to an economic value function of the form $(S-\hat{K})^{+}$, where $\hat{K}$ represents the expected economic benefit derived from the smart contracts, again assuming a call option. 
 In the boundary condition of formula (2.2), $\hat{K}$ is not necessarily a fixed strike price but a firm-specific estimate of the contract's expected benefit. For instance, if a smart contract is to receive discounts on a Web3.0 service, $\hat{K}$ would correspond to the economic value of the discount expected by maturity. More generally, $\hat{K}$ can be interpreted as the value of the destinated number of cryptocurrencies contracted to return upon the maturity. 
 
-### 2.2 Theory of the Numerical Methods
-In this study, Crank-Nicolson Finite Difference Method would be applied. The underlying reason is that finite difference method was naturally suitable to numerically calculate the results of B-S PDE, while Crank-Nicolson method is the most efficient among different ways of numerical convergence with trinomial tree.  
 
 ---
 
-## 3. Studies on Gas Fee
-In this section, the issues of gas fee are elaborated with respect to the assumptions, limitations, correlation studies, and the simple model concluded.
-For the ease of elaboration, the general gas fee function is given in pseudo-code form to provide an intuition for understandings: Gas Fee = Gas Used $\times$ (Base Fee + Priority Fee). In most cases, the unit of gas used is deterministic as it represents the number of computational steps of each execution. Hence, the part worth studying would be the term (Base Fee + Priority Fee) as the actual variable of the final gas fee. Base fee is the minimum price programmed to adjust according to the level of congestion in the network, and priority fee is an optional fee to speed up the execution. In this study, both base and priority fees are assumed to be considered. 
+## 3. Numerical Implementation
+In this study, Crank-Nicolson Finite Difference Method would be applied for the numerical implementation. Meanwhile, explanation of the numerical convergence and the accompanying program would be elabourated.
 
-### 3.1 Explanation of Gas Fee Function
-For the $g(\sigma)$, this is an extra dummy variable compared to the equation 2.1. It represents the base fee plus priority fee to be amplified if you choose to execute the smart contract at time t with the corresponding volatility of the cryptocurrency. As gas fee acts similar to a commission fee in practice, it should not be affecting the B-S PDE itself but the boundary conditions. While it is stated that time is one of the factors should be considered to evaluate the gas fee, the model did not include the variable. The reason is when the effect of time is considerate, gas fee shall be stochastic in nature and expressed in stochastic differential equation. However, such equations are very difficult to audit as random process cannot be assumed or neglected under numerical simulations. A more feasible alternative model would be using regression analysis to estimate such gas fee deterministically, and project the effect of time onto the volatility $\sigma$ which sensitivity could be test under usual accounting practice. 
-
----
-
-## 4. Numerical Implementation
+### 3.1 Crank-Nicolson Finite Difference Method
 
 
-### 4.1 Crank-Nicolson Finite Difference Method
+### 3.2 Concepts of Convergence
 
 
-### 4.2 Concepts of Convergence
+### 3.3 Program Explanation
 
 ---
 
-## 5. Sensitivity Test
+## 4. Sensitivity Test
 *(To be processed).*
+
+
+---
+
+## 5. Limitation and Conclusion
+*(To be processed).*
+
+
 
 
 <sup>1</sup> (Denotes for B-S PDE)
