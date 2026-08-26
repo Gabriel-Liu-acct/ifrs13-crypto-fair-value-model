@@ -27,7 +27,7 @@ The model proposed in this study is not universally applicable to all types of c
 
 ---
 
-## 2. Valuation Model and Its Numerical Methods 
+## 2. Valuation Model 
 To establish the formula that is applicable to measure fair value of crypto assets with the assumption associated with options, we may first recall [3], [4] the B-S PDE $BS(V) = \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2} V}{\partial S^{2}} + (r-q)S\frac{\partial V}{\partial S} - rV  \space$ (2.1) with the boundary conditions $BS(V) \le 0, \space V \ge \Phi, \space BS(V) \cdot (V - \Phi) = 0$, where $\Phi$ is the payoff function.
 * $t$ denotes the time variable
 * $V$ denotes the fair value of the option.
@@ -70,7 +70,7 @@ In this study, Crank-Nicolson Finite Difference Method would be applied for the 
 
 ---
 
-## 5. Limitation of the Study
+## 5. Scope and Limitation
 *(To be processed).*
 
 
