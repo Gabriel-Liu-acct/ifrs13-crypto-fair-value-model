@@ -1,4 +1,4 @@
-# Framework for Fair Value Measurement of Crypto Assets under IFRS 13 Level 3 Inputs 
+# Framework for Fair Value Measurement of Crypto Assets under IFRS 13 with Level 3 Inputs 
 
 > **Author:** Z. H. Liu  
 > **Repository:** [Your GitHub Repository Link]  
@@ -12,9 +12,9 @@ This paper addresses a critical valuation gap in current accounting practices un
 ---
 
 ## 1. Introduction
-[1], [2] Under prevailing practice, crypto assets held by entities are frequently accounted for under IAS 38 Intangible Assets. However, crypto assets in the form of smart contracts (e.g., option receipt, lending receipt, or locked tokens) exhibit dynamic and path-dependent behavior. While many discussions have questioned whether a framework designed for traditional intangible assets (e.g., patent, goodwill, or copyrights) could fully reflect the economic substance of various crypto assets, consensus has not been reached due to a lack of appropriate definitions and methodologies. In particular, this study attempts to provide an alternative method by proposing [3], [4] a revised version of the Black-Scholes Partial Differential Equation (B-S PDE)<sup>1</sup>. Further details are discussed in Section 2. In Section 2.3 and "measurement.py", [3], [4], [5] the Crank-Nicolson Finite Difference Method (C-N FDM)<sup>2</sup> is applied as the numerical model for practical implementation. 
+[1], [2] Under prevailing practice, crypto assets held by entities are frequently accounted for under IAS 38 Intangible Assets. However, crypto assets in the form of smart contracts (e.g., option receipt, lending receipt, or locked tokens) exhibit dynamic and path-dependent behavior. While many discussions have questioned whether a framework designed for traditional intangible assets (e.g., patent, goodwill, or copyrights) could fully reflect the economic substance of various crypto assets, consensus has not been reached due to a lack of appropriate definitions and methodologies. In particular, this study attempts to provide an alternative method by proposing [3], [4] a revised version of the Black-Scholes-Merton (BSM) model<sup>1</sup>. Further details are discussed in Section 2. In Section 2.3 and "measurement.py", [3], [4], [5] the Crank-Nicolson Finite Difference Method (C-N FDM)<sup>2</sup> is applied as the numerical model for practical implementation. 
 
-It is worth noting that [1], [2] smart contracts cannot be readily accounted for under fair value measurement with the existing regulations, but the proposed model may remain meaningful for analyzing complex crypto assets and the extension of ideas. While some of the model inputs, which will be analyzed in Section 2.1, [6] are classified as Level 2 inputs under IFRS 13, many smart contracts lack comparable assets in active markets. [6] Their fair value is hence dependent on model estimation and would fall under Level 3 input classification. Consider the assumption related to derivatives of the corresponding cryptocurrencies, particularly options in this study, the application of the B-S PDE could be naturally feasible accordingly. The concept was inspired from an example when a smart contract is active, it is accounted under the cryptocurrencies assigned when made.
+It is worth noting that [1], [2] smart contracts cannot be readily accounted for under fair value measurement with the existing regulations. Nevertheless, the proposed model offers a meaningful approach for analyzing complex crypto assets and for extending current valuation methodologies. [6] In the absence of active market, fair value measurement for such assets depends on model-based estimation and therefore falls under IFRS 13 Level 3 input classification. Given that these smart contracts often exhibit economic characteristics similar to derivatives referencing the underlying cryptocurrencies, particularly options in this study, the application of the BSM model becomes a natural and feasible starting point for valuation. The analogy is inspired by the observation that when a smart contract is active, its value is economically linked to the cryptocurrencies assigned.
 
 ### 1.1 Applicable Assets to be Studied and Measured  
 The model proposed in this study is not universally applicable to all types of crypto assets. It is therefore necessary to outline its limitation at the outset. The term "smart contract" will refer exclusively to assets that satisfy the following criteria.
@@ -28,7 +28,10 @@ The model proposed in this study is not universally applicable to all types of c
 ---
 
 ## 2. Valuation Model 
-To establish the formula that is applicable to measure fair value of crypto assets with the assumption associated with options, we may first recall [3], [4] the B-S PDE $BS(V) = \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2} V}{\partial S^{2}} + (r-q)S\frac{\partial V}{\partial S} - rV  \space$ (2.1) with the boundary conditions $BS(V) \le 0, \space V \ge \Phi, \space BS(V) \cdot (V - \Phi) = 0$, where $\Phi$ is the payoff function.
+In this section, rational for modifying the conventional American option BSM for the application in smart contracts will be elaborated. 
+
+### 2.1 Model Modification
+To establish the model that is applicable to measure fair value of smart contracts with the assumption associated with options, we may first recall the BSM model [3], [4]: $L(V) = \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2} V}{\partial S^{2}} + (r-q)S\frac{\partial V}{\partial S} - rV  \space$ (2.1) with the complementarity conditions $L(V) \le 0, \space V \ge \Phi, \space L(V) \cdot (V - \Phi) = 0$ (2.1a), where $\Phi$ is the payoff function. Note that $L(\cdot)$ denotes the Black-Scholes differential operator but not a function.  
 * $t$ denotes the time variable
 * $V$ denotes the fair value of the option.
 * $S$ denotes the fair value of the underlying asset.
@@ -37,15 +40,22 @@ To establish the formula that is applicable to measure fair value of crypto asse
 * $q$ denotes the dividend yield of the asset. 
 * $\Phi$ is the standard payoff function, details explained later.
 
-While in this study, the formula changes to $BS(W) = \frac{\partial W}{\partial t} + \frac{1}{2}\sigma^{2}P^{2}\frac{\partial^{2} W}{\partial P^{2}} + (r-q)P\frac{\partial W}{\partial P} - rW\space$ (2.2) with the boundary conditions $BS(W) \le 0, \space W \ge \hat{\Phi}, \space BS(W) \cdot (W - \hat{\Phi}) = 0$ where:
+While in this study, the model changes to $L(W) = \frac{\partial W}{\partial t} + \frac{1}{2}\sigma^{2}P^{2}\frac{\partial^{2} W}{\partial P^{2}} + (r-q)P\frac{\partial W}{\partial P} - rW\space$ (2.2) with the complementarity conditions $L(W) \le 0, \space W \ge \hat{\Phi}, \space L(W) \cdot (W - \hat{\Phi}) = 0$ (2.2a) where:
 * $W$ denotes the fair value of the smart contract.
 * $P$ denotes the fair value of the cryptocurrency.
 * $\hat{\Phi}$ is the economic value function to the entity holding the smart contract at the maturity, details explained later.
-* All other variables not mentioned have very similar properties to the original B-S PDE.
+* All other variables not mentioned have very similar properties to the original BSM model.
 
-[3], [4] In formula (2.1), $\Phi$ denotes the standard payoff function for an option, defined as $(S-K)^{+}$ for call options (and $(K-S)^{+}$ for put options), where $K$ is the contractually fixed strike price. 
+### 2.2 Explanation of Changes in Variables
+This subsection provides essential explanation towards the changed variables from (2.1) to (2.2). 
 
-In formula (2.2), the payoff function is generalized to $\hat{\Phi}$, defined as $(S-\hat{K})^{+}$ for call options, where $\hat{K}$ replaces the conventional strike price $K$ and represents the expected economic benefit derived from the smart contracts at maturity. Unlike the fixed K in the standard framework, $\hat{K}$ is a firm-specific estimate, to be determined in accordance with related accounting and legal standards.
+#### 2.2.1 Modification in Underlying Assets
+The most significant difference to the variable set is the replacement of conventional underlying asset price S with the cryptocurrency price P. The payoff of these smart contracts is economically referenced to the price of a specific cryptocurrency. Hence, the cryptocurrency price serves as the primary driver of the contract value, analogous to the role of the underlying assets in traditional financial markets. Emphasizing the auditability of the model, the value of P is observable on public exchanges, owing to the maturity of centralized cryptocurrencies exchanges and their associated data infrastructure. [6] This satisfies the market participant assumption requirement for fair value measurement inputs, and such substitution is therefore economically grounded and practically feasible. 
+
+#### 2.2.2 Standard Payoff Function
+As stated in (2.1a), $\Phi$ denotes the standard payoff function for an option, defined as $(S-K)^{+}$ for call options (and $(K-S)^{+}$ for put options), where $K$ is the contractually fixed strike price. 
+
+In (2.2a), the payoff function is generalized to $\hat{\Phi}$, defined as $(P-\hat{K})^{+}$, where $\hat{K}$ replaces the conventional strike price $K$ and represents the expected economic benefit derived from the smart contracts at maturity. Unlike the fixed K in the standard framework, $\hat{K}$ is a firm-specific estimate, to be determined in accordance with related accounting and legal standards.
 
 The interpretation of $\hat{K}$ is context-dependent. For a lending receipt that entitles the holder to services from a DAO entity, $\hat{K}$ corresponds to the expected economic value of those services by maturity. For contracts that obligate the return of a specified cryptocurrency amount, the expected cryptocurrency amount should be converted into its equivalent fiat value by maturity. Under all circumstances, $\hat{K}$ should remain expressed in the same currency unit as $S$. 
 
@@ -76,7 +86,7 @@ In this study, Crank-Nicolson Finite Difference Method would be applied for the 
 
 
 
-<sup>1</sup> (Denotes for B-S PDE)
+<sup>1</sup> (Denotes for BSM model)
 <sup>2</sup> (Denotes for C-N FDM)
 
 ---
