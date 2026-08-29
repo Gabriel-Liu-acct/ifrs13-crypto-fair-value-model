@@ -62,15 +62,16 @@ The interpretation of $\hat{K}$ is context-dependent. For a lending receipt that
 ---
 
 ## 3. Numerical Model
-In this study, Crank-Nicolson Finite Difference Method would be applied for the numerical implementation. Meanwhile, explanation of the numerical convergence and the accompanying program would be elabourated.
+In this study, Crank-Nicolson Finite Difference Method would be applied for the numerical implementation. Meanwhile, explanation of the numerical convergence and the accompanying program would be elaborated. For better understandings, please refer to "Measurement.py"
 
-### 3.1 Crank-Nicolson Finite Difference Method
-
-
-### 3.2 Concepts of Convergence
+### 3.1 Program Logic
 
 
-### 3.3 Program Explanation
+### 3.2 Variable Explanation
+
+
+### 3.3 Concepts of Convergence
+
 
 ---
 
