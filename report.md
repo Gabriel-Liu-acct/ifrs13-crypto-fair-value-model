@@ -62,10 +62,10 @@ The interpretation of $\hat{K}$ is context-dependent. For a lending receipt that
 ---
 
 ## 3. Numerical Model
-In this study, Crank-Nicolson Finite Difference Method would be applied for the numerical implementation. Meanwhile, explanation of the numerical convergence and the accompanying program would be elaborated. For better understandings, please refer to "Measurement.py"
+In this study, logic of the program, explanation of the numerical convergence and the accompanying program would be elaborated. For better understandings, please refer to "Measurement.py"
 
 ### 3.1 Program Logic
-
+The program has applied C-N FDM for the computation of BSM model. The major reason is that C-N FDM is the most suitable numerical methods for auditability. Firstly, C-N FDM do not require any assumption related to computation itself, such as assumption for probability of price remains unchanged in trinomial tree. Secondly, unlike Monte Carlo the actual results dependent on randomly generated numbers, the computation using C-N FDM is deterministic.   
 
 ### 3.2 Variable Explanation
 
