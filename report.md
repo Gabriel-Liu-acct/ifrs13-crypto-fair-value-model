@@ -50,12 +50,12 @@ While in this study, the model changes to $L(W) = \frac{\partial W}{\partial t} 
 This subsection provides essential explanation towards the changed variables from (2.1) to (2.2). 
 
 #### 2.2.1 Modification in Underlying Assets
-The most significant difference to the variable set is the replacement of conventional underlying asset price S with the cryptocurrency price P. The payoff of these smart contracts is economically referenced to the price of a specific cryptocurrency. Hence, the cryptocurrency price serves as the primary driver of the contract value, analogous to the role of the underlying assets in traditional financial markets. Emphasizing the auditability of the model, the value of P is observable on public exchanges, owing to the maturity of centralized cryptocurrencies exchanges and their associated data infrastructure. [6] This satisfies the market participant assumption requirement for fair value measurement inputs, and such substitution is therefore economically grounded and practically feasible. 
+The most significant difference to the variable set is the replacement of conventional underlying asset price $S$ with the cryptocurrency price $P$. The payoff of these smart contracts is economically referenced to the price of a specific cryptocurrency. Hence, the cryptocurrency price serves as the primary driver of the contract value, analogous to the role of the underlying assets in traditional financial markets. Emphasizing the auditability of the model, the value of $P$ is observable on public exchanges, owing to the maturity of centralized cryptocurrencies exchanges and their associated data infrastructure. [6] This satisfies the market participant assumption requirement for fair value measurement inputs, and such substitution is therefore economically grounded and practically feasible. 
 
 #### 2.2.2 Standard Payoff Function
 As stated in (2.1a), $\Phi$ denotes the standard payoff function for an option, defined as $(S-K)^{+}$ for call options (and $(K-S)^{+}$ for put options), where $K$ is the contractually fixed strike price. 
 
-In (2.2a), the payoff function is generalized to $\hat{\Phi}$, defined as $(P-\hat{K})^{+}$, where $\hat{K}$ replaces the conventional strike price $K$ and represents the expected economic benefit derived from the smart contracts at maturity. Unlike the fixed K in the standard framework, $\hat{K}$ is a firm-specific estimate, to be determined in accordance with related accounting and legal standards.
+In (2.2a), the payoff function is generalized to $\hat{\Phi}$, defined as $(P-\hat{K})^{+}$, where $\hat{K}$ replaces the conventional strike price $K$ and represents the expected economic benefit derived from the smart contracts at maturity. Unlike the fixed $K$ in the standard framework, $\hat{K}$ is a firm-specific estimate, to be determined in accordance with related accounting and legal standards.
 
 The interpretation of $\hat{K}$ is dependent to its context. For a lending receipt entitling the holder to services from a DAO entity, $\hat{K}$ corresponds to the expected economic value of those services by maturity. For contracts that obligate the return of a specified cryptocurrency amount, the expected cryptocurrency amount should be converted into its equivalent fiat value at maturity. Under all circumstances, $\hat{K}$ should remain expressed in the same currency unit as $P$. It is also noteworthy that basis of $\hat{K}$ and $P$ should remain consistent: when $\hat{K}$ represents the strike price, $P$ should be expressed as the price per unit of the cryptocurrency; when $\hat{K}$ represents the total expected economic value, $P$ should be expressed as the total value of cryptocurrency position. 
 
@@ -67,22 +67,26 @@ This section elaborates on the logic of the program, variables used in the progr
 ### 3.1 Program Logic
 The program implements C-N FDM for the numerical solution of the BSM model. The major reason is that C-N FDM is the most suitable numerical method for auditability. Firstly, C-N FDM does not require any assumption related to computation itself, such as assumption of probability measures in trinomial tree. Secondly, unlike Monte Carlo simulations which actual results depend on randomly generated numbers, the computation using C-N FDM is deterministic. 
 
-The program applies logarithmic transformation to the price grid, which upper and lower bounds of the computational domain are determined with reference to the initial the cryptocurrency price P in (2.2). One advantage of the log-normal distribution assumption is that negative asset values are excluded under normal circumstances, and the valuation output is not affected by this assumption in theory.  
+The program applies logarithmic transformation to the price grid, which upper and lower bounds of the computational domain are determined with reference to the initial the cryptocurrency price $P$ in (2.2). One advantage of the log-normal distribution assumption is that negative asset values are excluded under normal circumstances, and the valuation output is not affected by this assumption in theory.  
 
 The program is designed to process smart contracts under assumption of either European or American exercise style. Although the current implementation is limited to vanilla option analogs, its structure does not preclude extension of idea to exotic options, such as Asian option or lookback options. 
 
 ### 3.2 Variable Explanation
-For readiness and intuitive understanding, the variables used in the program are the same as conventional denotations. In substance, the program is simply a BSM model computational program. One shall be aware to one's own content when using "Measurement.py". 
+For intuitive understanding, the variables used in the program follows conventional notations as (2.1). In substance, the program computes the numerical solution of the BSM model. Users shall ensure that the inputs they provide correspond to the intended economic interpretation. 
 
 #### 3.2.1 Variables in BSM Model
-To clarify, the program has shown its relevant message when users inserting inputs. However, in case of confusion, some variables used in the program but have different notation with (2.2) will be explained: 
+The program display input prompts for each variable. However, in case of confusion, the following mappings clarify the correspondence between the program's variable names and notation in (2.2): 
 * $S$ in the program refers to $P$
 * $K$ in the program refers to $\hat{K}$ in $\hat{\Phi}$ as at (2.2a)
 * $div$ in the program refers to $q$
 * $sig$ in the program refers to $\sigma$
 
 #### 3.2.2 Variables Exclusive for Computation
-In the program, some variables are important for the logic of computation and auditing. Although the constants computed from users' input would not be explained in this report, the variables store list in the program are considerably more significant for verification.   
+In addition to the economic inputs, the program requires several parameters for computation, including: the number of time steps $N$; the number of price steps $N_j$; and the grid spacing $dx$. These parameters do not correspond to any economic variables but are essential for the implementation of C-N FDM. They also play a critical role in Subsection 3.3. Users shall select these parameters considering numerical stability and processing power. 
+
+Certain lists used in the program also carry useful economic information for auditing purposes. Although printing those as output is not available in the original version of "Measurement.py", users may adjust the code for their own purposes. Some noteworthy examples are: 
+* $apm$ represents the list of asset prices for the price grid, sequenced in ascending order.
+* $ovm$ represents the list of option values to the corresponding asset prices, sequenced correspondingly to $apm$. Note that this list is updated iteratively during calculation; please refer to the code for details.
 
 ### 3.3 Robustness Testing
 
