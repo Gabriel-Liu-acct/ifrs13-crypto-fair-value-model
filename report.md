@@ -67,6 +67,10 @@ This section elaborates on the logic of the program, variables used in the progr
 ### 3.1 Program Logic
 The program implements C-N FDM for the numerical solution of the BSM model. The major reason is that C-N FDM is the most suitable numerical method for auditability. Firstly, C-N FDM does not require any assumption related to computation itself, such as assumption of probability measures in trinomial tree. Secondly, unlike Monte Carlo simulations which actual results depend on randomly generated numbers, the computation using C-N FDM is deterministic. 
 
+The program applies logarithmic transformation to the price grid, which upper and lower bounds of the computational domain are determined with reference to the initial the cryptocurrency price P in (2.2). One advantage of the log-normal distribution assumption is that negative asset values are excluded under normal circumstances, and the valuation output is not affected by this assumption in theory.  
+
+The program is designed to process smart contracts under assumption of either European or American exercise style. Although the current implementation is limited to vanilla option analogs, its structure does not preclude extension of idea to exotic options, such as Asian option or lookback options. 
+
 ### 3.2 Variable Explanation
 
 
