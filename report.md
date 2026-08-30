@@ -57,7 +57,7 @@ As stated in (2.1a), $\Phi$ denotes the standard payoff function for an option, 
 
 In (2.2a), the payoff function is generalized to $\hat{\Phi}$, defined as $(P-\hat{K})^{+}$, where $\hat{K}$ replaces the conventional strike price $K$ and represents the expected economic benefit derived from the smart contracts at maturity. Unlike the fixed K in the standard framework, $\hat{K}$ is a firm-specific estimate, to be determined in accordance with related accounting and legal standards.
 
-The interpretation of $\hat{K}$ is context-dependent. For a lending receipt that entitles the holder to services from a DAO entity, $\hat{K}$ corresponds to the expected economic value of those services by maturity. For contracts that obligate the return of a specified cryptocurrency amount, the expected cryptocurrency amount should be converted into its equivalent fiat value by maturity. Under all circumstances, $\hat{K}$ should remain expressed in the same currency unit as $S$. 
+The interpretation of $\hat{K}$ is dependent to its context. For a lending receipt entitling the holder to services from a DAO entity, $\hat{K}$ corresponds to the expected economic value of those services by maturity. For contracts that obligate the return of a specified cryptocurrency amount, the expected cryptocurrency amount should be converted into its equivalent fiat value at maturity. Under all circumstances, $\hat{K}$ should remain expressed in the same currency unit as $P$. It is also noteworthy that basis of $\hat{K}$ and $P$ should remain consistent: when $\hat{K}$ represents the strike price, $P$ should be expressed as the price per unit of the cryptocurrency; when $\hat{K}$ represents the total expected economic value, $P$ should be expressed as the total value of cryptocurrency position. 
 
 ---
 
@@ -72,7 +72,17 @@ The program applies logarithmic transformation to the price grid, which upper an
 The program is designed to process smart contracts under assumption of either European or American exercise style. Although the current implementation is limited to vanilla option analogs, its structure does not preclude extension of idea to exotic options, such as Asian option or lookback options. 
 
 ### 3.2 Variable Explanation
+For readiness and intuitive understanding, the variables used in the program are the same as conventional denotations. In substance, the program is simply a BSM model computational program. One shall be aware to one's own content when using "Measurement.py". 
 
+#### 3.2.1 Variables in BSM Model
+To clarify, the program has shown its relevant message when users inserting inputs. However, in case of confusion, some variables used in the program but have different notation with (2.2) will be explained: 
+* $S$ in the program refers to $P$
+* $K$ in the program refers to $\hat{K}$ in $\hat{\Phi}$ as at (2.2a)
+* $div$ in the program refers to $q$
+* $sig$ in the program refers to $\sigma$
+
+#### 3.2.2 Variables Exclusive for Computation
+In the program, some variables are important for the logic of computation and auditing. Although the constants computed from users' input would not be explained in this report, the variables store list in the program are considerably more significant for verification.   
 
 ### 3.3 Robustness Testing
 
