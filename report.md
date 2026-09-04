@@ -98,7 +98,7 @@ Note that $dx$ is the discretization of continuous differential to asset price i
 ---
 
 ## 4. Sensitivity Analysis
-*(To be processed).*
+Satisfying the requirement of auditing, [6] fair value measurement model shall provide a sensitivity analysis according to the unobservable inputs. In (2.2) and (2.2a), the implied volatility ($\sigma$) and strike value ($\hat{K}$) are the unobservable inputs. The implied volatility is considered unobservable as historical data cannot accurately predicts the actual trend. While in the modified model, the strike value could be interpreted as the expected economic benefit. The value itself would become unobservable in the market. 
 
 
 ---
