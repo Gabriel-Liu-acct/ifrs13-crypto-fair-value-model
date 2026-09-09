@@ -35,7 +35,7 @@ To establish the model that is applicable to measure fair value of smart contrac
 * $t$ denotes the time variable
 * $V$ denotes the fair value of the option.
 * $S$ denotes the fair value of the underlying asset.
-* $\sigma$ denotes the implicit volatility of the asset.
+* $\sigma$ denotes the implied volatility of the asset.
 * $r$ denotes the risk-free rate.
 * $q$ denotes the dividend yield of the asset. 
 * $\Phi$ is the standard payoff function, details explained later.
@@ -55,9 +55,9 @@ The most significant difference to the variable set is the replacement of conven
 #### 2.2.2 Standard Payoff Function
 As stated in (2.1a), $\Phi$ denotes the standard payoff function for an option, defined as $(S-K)^{+}$ for call options (and $(K-S)^{+}$ for put options), where $K$ is the contractually fixed strike price. 
 
-In (2.2a), the payoff function is generalized to $\hat{\Phi}$, defined as $(P-\hat{K})^{+}$, where $\hat{K}$ replaces the conventional strike price $K$ and represents the expected economic benefit derived from the smart contracts at maturity. Unlike the fixed $K$ in the standard framework, $\hat{K}$ is a firm-specific estimate, to be determined in accordance with related accounting and legal standards.
+In (2.2a), the payoff function is generalized to $\hat{\Phi}$, defined as $(P-\hat{K})^{+}$, where $\hat{K}$ replaces the conventional strike price $K$ and represents the expected economic benefit derived from the smart contracts at maturity. Unlike the fixed $K$ in the standard framework, $\hat{K}$ is a firm-specific estimate, to be determined in accordance with related accounting and legal standards. One should be notified that the estimation of $\hat{K}$ should not be entity-specific in order to be applicable for fair value measurment. 
 
-The interpretation of $\hat{K}$ is dependent to its context. For a lending receipt entitling the holder to services from a DAO entity, $\hat{K}$ corresponds to the expected economic value of those services at or after the maturity. For contracts that obligate the return of a specified cryptocurrency amount, the expected cryptocurrency amount should be converted into its equivalent fiat value at maturity. Under all circumstances, $\hat{K}$ should remain expressed in the same currency unit as $P$. It is also noteworthy that basis of $\hat{K}$ and $P$ should remain consistent: when $\hat{K}$ represents the strike price, $P$ should be expressed as the price per unit of the cryptocurrency; when $\hat{K}$ represents the total expected economic value, $P$ should be expressed as the total value of cryptocurrency position. 
+The interpretation of $\hat{K}$ is dependent to its context. For a lending receipt entitling the holder to services from a DAO entity, $\hat{K}$ corresponds to the expected economic value of those services at or after the maturity. For contracts that obligate the return of a specified cryptocurrency amount, the expected cryptocurrency amount should be converted into its equivalent fiat value at maturity. Under all circumstances, $\hat{K}$ should remain expressed in the same currency unit as $P$. It is also noteworthy that basis of $\hat{K}$ and $P$ should remain consistent: when $\hat{K}$ represents the strike price, $P$ should be expressed as the price per unit of the cryptocurrency; when $\hat{K}$ represents the total expected economic value, $P$ should be expressed as the total value of cryptocurrency positioned. 
 
 ---
 
@@ -67,7 +67,7 @@ This section elaborates on the logic of the program, variables used in the progr
 ### 3.1 Program Logic
 The program implements C-N FDM for the numerical solution of the BSM model. The major reason is that C-N FDM is the most suitable numerical method for auditability. Firstly, C-N FDM does not require any assumption related to computation itself, such as assumption of probability measures in trinomial tree. Secondly, unlike Monte Carlo simulations which actual results depend on randomly generated numbers, the computation using C-N FDM is deterministic. 
 
-The program applies logarithmic transformation to the price grid, which upper and lower bounds of the computational domain are determined with reference to the initial the cryptocurrency price $P$ in (2.2). One advantage of the log-normal distribution assumption is that negative asset values are excluded under normal circumstances, and the valuation output is not affected by this assumption in theory.  
+The program applies logarithmic transformation to the price grid, which upper and lower bounds of the computational domain are determined with reference to the initial the cryptocurrency price $P$ in (2.2). One advantage of the log-normal distribution assumption is that negative asset values are certainly excluded under normal circumstances, and the valuation output is not affected by this assumption in theory. This program applied Dirichlet boundary condition as the solutions of tridiagonal system. 
 
 The program is designed to process smart contracts under assumption of either European or American exercise style. Although the current implementation is limited to vanilla option analogs, its structure does not preclude extension of idea to exotic options, such as Asian option or lookback options. 
 
@@ -91,7 +91,7 @@ Certain lists used in the program also carry useful economic information for aud
 ### 3.3 Robustness and Convergence Testing
 In this subsection, the robustness and convergence of the program are tested for actual usage. In this test, input of $N$ and $N_j$ are set to the same value, with $N_j \times dx = 1$. Note that the actual number of price grids would be $2 N_j +1$. For instance, please refer to the appendix.
 
-According to the appendix, the program is able to process large grid numbers in reasonable amounts of time. It is observed that when $N$ and $N_j$ grow larger under the aforementioned setting, the error converges to approximately -0.091% to the analytical value. Despite the immaterial error, such computational error could be improved by setting $N_j \times dx = 3$ in practice, exact value has to be analyzed case by case. Additionally, the computational time increases approximatly exponentially as the grid size increases. While the numerical accuracy did not improve significantly after $N = 1000$ under this setting, users shall consider available computational resources before increasing $N$ or $N_j$. 
+According to the appendix, the program is able to process large grid numbers in reasonable amounts of time. It is observed that when $N$ and $N_j$ grow larger under the aforementioned setting, the error converges to approximately -0.091% to the analytical value. Despite the immaterial error, such computational error could be improved by setting $N_j \times dx = 3$ in practice, exact value has to be analyzed case by case. Additionally, the computational time increases approximatly polynomially as the grid size increases. While the numerical accuracy did not improve significantly after $N = 1000$ under this setting, users shall consider available computational resources before increasing $N$ or $N_j$. 
 
 Note that $dx$ is the discretization of continuous differential to asset price in numerical analysis, users shall determine the optimal value for better numerical approximation. When $dx$ is greater than optimum, error from discretization becomes significant; when $dx$ is smaller than optimum, error from truncation becomes significant. 
 
