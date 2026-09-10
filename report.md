@@ -105,7 +105,10 @@ The implied volatility ranges from 0 to 2 with a spacing interval of 0.2. Althou
 ---
 
 ## 5. Scope and Limitations
-*(To be processed).*
+In the previous sections, there are some economic factors not mentioned that are worth elaborating. While parts related to the previous content mentioned would be explained in detail, considerations out of the scope of this study would also be discussed as the potential future research foci according to the topics. 
+
+### 5.1 Economic Effects in change of Accounting Method
+The main purpose of this study is providing reasonable models to evaluate smart contracts using fair value measurement instead of cost-less-impairment. In this subsection, how such change in the valuation affects the accounting disclosures and economics would be elaborated. Note that the modeling and program implementation is essential but not the only main focus of the study, this subsection would cover the effects in a rough theoretical approach instead of data-based empirical research. 
 
 
 
