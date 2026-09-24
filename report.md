@@ -127,7 +127,7 @@ Before explaining the second reason, it is essential to acknowledge on how gas f
 #### 5.2.2 Other Factors
 The volatility of cryptocurrencies although is modeled, the randomness of it is not included. In this study, as the model is designed for accounting purposes, volatility is assumed constant throughout the periods. It is unrealistic in general as cryptocurrencies could have large fluctuation on its volatility in practice, which this could also affect the fair value of any smart contracts. In this study or even general accounting practice, disclosing sensitivity might be able to fulfill entities' responsibility accordingly. However, a better model that includes the change of volatility would be more suitable for decision making. 
 
-In this study, only a few varieties of smart contracts are included in the discussion. In market, there are more kinds of crypto assets that are not suitable to apply BSM model.
+In this study, only a few varieties of smart contracts are included in the discussion. In the market, there are more kinds of crypto assets that are not suitable to apply BSM model. For example, smart contracts rely on multiple assets, economically do not act similar to financial derivatives, and perpetual in nature.    
 
 
 <sup>1</sup> (Denotes for BSM model)
