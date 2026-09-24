@@ -124,6 +124,11 @@ Firstly, gas fees are transaction cost which [6] explicitly states that the fair
 
 Before explaining the second reason, it is essential to acknowledge on how gas fees are computed and decided. In short, gas fees fluctuate positively correlated with the frequency of total transaction activity at the moment. While an empirical study on gas fees is beyond the scope, one should aware that changes in gas fees follow a stochastic process despite deterministic algorithms. In practice, changes of gas fees are partially affected by on-chain members' transaction activities, while these activities could be dominating the gas fee sometimes when demands for transaction surges due to events occurring off-chain. It may seem a solution to model gas fee independently as transaction friction to affect the boundary conditions. This is not beneficial and, in fact, is counter-effective for auditability. As mentioned, gas fees follow a stochastic process, which would require random variables to model. However, those random variables are very difficult to audit in practice. [6] Such models would not be acceptable, as auditors cannot analyze their sensitivities in the same manner as deterministic variables.
 
+#### 5.2.2 Other Factors
+The volatility of cryptocurrencies although is modeled, the randomness of it is not included. In this study, as the model is designed for accounting purposes, volatility is assumed constant throughout the periods. It is unrealistic in general as cryptocurrencies could have large fluctuation on its volatility in practice, which this could also affect the fair value of any smart contracts. In this study or even general accounting practice, disclosing sensitivity might be able to fulfill entities' responsibility accordingly. However, a better model that includes the change of volatility would be more suitable for decision making. 
+
+In this study, only a few varieties of smart contracts are included in the discussion. In market, there are more kinds of crypto assets that are not suitable to apply BSM model.
+
 
 <sup>1</sup> (Denotes for BSM model)
 <sup>2</sup> (Denotes for C-N FDM)
