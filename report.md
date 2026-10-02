@@ -136,8 +136,9 @@ Additional factors were not included, such as counterparty credit risk and liqui
 ## 6. Conclusion
 In a nutshell, this report provides a revised and generally accepted fair value measurement model for evaluating certain kinds of smart contracts. By treating those smart contracts as financial derivatives of the underlying crypto currencies, it estimates the fair value in the books according to the economical substance. It aims to avoid potential earnings management that contradicts the nature of the crypto holdings. At the same time, it provides a prototype of a mathematical model and numerical implementation as the reference for the revaluation method, where users and researchers could further verify and improve the analogy and its implementations. The limitations of the study are discussed in Section 5.2, along with directions for future research.  
 
-<sup>1</sup> (Denotes for BSM model)
-<sup>2</sup> (Denotes for C-N FDM)
+<sup>1</sup> The Black-Scholes-Merton model originates from Black and Scholes (1973) and Merton (1973). It is treated here as standard textbook material; the present study does not claim originality for its derivation. The contribution lies in its extension to smart contracts. 
+
+<sup>2</sup> The Crank-Nicolson finite difference method originates from Crank and Nicolson (1947). It is a standard numerical scheme for parabolic PDEs and is treated here as textbook material. The present study applies it to the modified BSM PDE without claiming originality for the scheme itself.
 
 ---
 
