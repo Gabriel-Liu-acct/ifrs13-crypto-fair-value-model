@@ -2,7 +2,7 @@
 
 > **Author:** Z. H. Liu  
 > **Repository:** [Your GitHub Repository Link]  
-> **Status:** Working Paper (Research in Progress)
+> **Status:** Completed, may subject to any future updates.
 
 ---
 
