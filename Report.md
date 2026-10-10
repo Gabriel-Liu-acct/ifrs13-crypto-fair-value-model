@@ -1,7 +1,7 @@
 # Framework for Fair Value Measurement of Crypto Assets under IFRS 13 with Level 3 Inputs 
 
 > **Author:** Z. H. Liu  
-> **Repository:** https://github.com/Gabriel-Liu-acct/ifrs13-crypto-fair-value-model 
+> **Repository:** https://github.com/Gabriel-Liu-acct/ifrs13-crypto-fair-value-model   
 > **Status:** Completed, may subject to any future updates.
 
 ---
