@@ -11,14 +11,3 @@ The primary objective of this study is to support the commercial adoption of dec
 ---
 
 ## 
----
-
-## Repository Structure
-
-```text
-├── data
-│                
-│
-├── report.md       
-├── Measurement.py               
-└── README.md
